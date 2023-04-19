@@ -1,0 +1,49 @@
+{
+    "name": "caplet/caplet",
+    "description": "A minimal PSR-11 compliant autowiring dependency injection container.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "di",
+        "dependency",
+        "injection",
+        "dependency injection",
+        "ioc",
+        "inversion of control",
+        "container"
+    ],
+    "authors": [
+        {
+            "name": "Paul M. Jones",
+            "email": "pmjones@pmjones.io"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "psr/container": "^2.0"
+    },
+    "provide": {
+        "psr/container-implementation" : "2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Caplet\\": "src/"
+        }
+    },
+    "require-dev": {
+        "pds/skeleton": "^1.0",
+        "pds/composer-script-names": "^1.0",
+        "phpunit/phpunit": "^9.0",
+        "phpstan/phpstan": "^1.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Caplet\\": "tests/"
+        }
+    },
+    "scripts": {
+        "analyze": "./vendor/bin/phpstan analyze -c phpstan.neon",
+        "check": "composer test && composer analyze",
+        "test": "./vendor/bin/phpunit"
+    }
+}
