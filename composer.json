@@ -1,5 +1,5 @@
 {
-    "name": "caplet/caplet",
+    "name": "pmjones/caplet",
     "description": "A minimal PSR-11 compliant autowiring dependency injection container.",
     "type": "library",
     "license": "MIT",
