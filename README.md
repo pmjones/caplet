@@ -29,9 +29,9 @@ _Caplet_ offers this non-PSR-11 method:
 
 ## Configuration
 
-Configure constructor arguments by passing an array with the structure
-`$config['ClassName']['parameterName']` at _Caplet_ construction time. For
-example, given the following class ...
+Configure non-object constructor arguments by passing an array with the
+structure `$config['ClassName']['parameterName']` at _Caplet_ construction
+time. For example, given the following class ...
 
 ```php
 namespace Foo;
@@ -125,12 +125,13 @@ class ProjectCaplet extends Caplet
 As seen above, the callable factory logic must have the signature
 `function (Caplet $caplet)`, and may specify a return type.
 
-## Parameter Resolution
+## Constructor Parameter Resolution
 
 _Caplet_ will attempt to resolve constructor parameters in this order:
 
 - First, use an argument from $config, if one is available.
-- Next, try to `get()` an object of the parameter type .
+- Next, try to `get()` an object of the parameter type.
 - Last, use the default parameter value, if one is defined.
 
-If none of these work, _Caplet_ will throw _Exception\NotResolved_.
+If none of these work, _Caplet_ will throw _Exception\NotInstantiated_,
+with a previous exception of _Exception\NotResolved_.
