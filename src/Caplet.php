@@ -14,17 +14,17 @@ use Throwable;
 class Caplet implements ContainerInterface
 {
     /**
-     * @var callable[]
+     * @var array<class-string, callable>
      */
     protected array $factories = [];
 
     /**
-     * @var object[]
+     * @var array<class-string, object>
      */
     protected array $instances = [];
 
     /**
-     * @param array<string, array<string, mixed>> $config
+     * @param array<class-string, array<string, mixed>> $config
      */
     public function __construct(protected array $config = [])
     {
@@ -78,6 +78,9 @@ class Caplet implements ContainerInterface
         }
     }
 
+    /**
+     * @param class-string $class
+     */
     protected function factory(string $class, callable $factory) : void
     {
         $this->factories[$class] = $factory;
@@ -101,6 +104,7 @@ class Caplet implements ContainerInterface
     }
 
     /**
+     * @param class-string $declaringClass
      * @return mixed[]
      */
     protected function arguments(
@@ -118,6 +122,9 @@ class Caplet implements ContainerInterface
         return $arguments;
     }
 
+    /**
+     * @param class-string $declaringClass
+     */
     protected function argument(
         string $declaringClass,
         ReflectionParameter $parameter,
@@ -151,6 +158,9 @@ class Caplet implements ContainerInterface
         return $this->default($declaringClass, $parameter, $name, $type);
     }
 
+    /**
+     * @param class-string $declaringClass
+     */
     protected function default(
         string $declaringClass,
         ReflectionParameter $parameter,
