@@ -73,14 +73,12 @@ use Caplet\Caplet;
 
 class ProjectCaplet extends Caplet
 {
-    public function __construct(
-        string $bar,
-        string $baz,
-    ) {
+    public function __construct(array $env)
+    {
         parent::__construct([
             Foo::class => [
-                'bar' => 'bar-value',
-                'baz' => 'baz-value',
+                'bar' => $env['BAR_VALUE'],
+                'baz' => $env['BAZ_VALUE'],
             ],
         ]);
     }
